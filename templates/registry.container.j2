@@ -1,0 +1,20 @@
+# {{ ansible_managed }}
+# Podman Quadlet: systemd generates registry.service from this file.
+[Unit]
+Description=Container registry (registry:2)
+Wants=network-online.target
+After=network-online.target
+
+[Container]
+ContainerName=registry
+Image={{ registry_image }}
+PublishPort={{ registry_port }}:5000
+# :z (shared label): the garbage-collect container mounts it too
+Volume={{ registry_data_dir }}:/var/lib/registry:z
+Environment=REGISTRY_STORAGE_DELETE_ENABLED=true
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

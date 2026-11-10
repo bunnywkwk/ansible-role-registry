@@ -1,0 +1,30 @@
+---
+# Checked before any task runs: a wrong type stops the play with a clear message.
+argument_specs:
+  main:
+    short_description: Private registry:2 on RHEL 9 under systemd via Podman Quadlet.
+    options:
+      registry_image:
+        type: str
+        default: docker.io/library/registry:2.8.3
+        description: Registry image, pinned.
+      registry_port:
+        type: int
+        default: 5000
+        description: Host port, plain HTTP.
+      registry_data_dir:
+        type: path
+        default: /var/lib/registry
+        description: Image storage; put it on the large disk.
+      registry_gc_enabled:
+        type: bool
+        default: false
+        description: Install a weekly garbage-collection timer.
+      registry_gc_schedule:
+        type: str
+        default: "Sun *-*-* 03:00:00"
+        description: systemd OnCalendar value for garbage collection.
+      registry_manage_firewall:
+        type: bool
+        default: true
+        description: Open registry_port in firewalld.

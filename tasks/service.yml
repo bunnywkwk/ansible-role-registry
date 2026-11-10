@@ -1,0 +1,33 @@
+---
+- name: "SERVICE | Create the data folder"
+  ansible.builtin.file:
+    path: "{{ registry_data_dir }}"
+    state: directory
+    owner: root
+    group: root
+    mode: "0700"
+
+- name: "SERVICE | Install the registry Quadlet unit"
+  ansible.builtin.template:
+    src: registry.container.j2
+    dest: "{{ registry_quadlet_path }}"
+    owner: root
+    group: root
+    mode: "0644"
+  notify: Restart registry
+
+# Quadlet units are generated, so systemd cannot enable them: [Install] in the unit starts it at boot.
+# daemon_reload runs the generator, so the first run finds registry.service.
+- name: "SERVICE | Start the registry"
+  ansible.builtin.systemd_service:
+    name: "{{ registry_service }}"
+    state: started
+    daemon_reload: true
+
+- name: "SERVICE | Open the registry port"
+  when: registry_manage_firewall
+  ansible.posix.firewalld:
+    port: "{{ registry_port }}/tcp"
+    permanent: true
+    immediate: true
+    state: enabled

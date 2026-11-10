@@ -1,0 +1,10 @@
+# {{ ansible_managed }}
+# GC is unsafe while pushes run, so the registry is stopped for its duration.
+[Unit]
+Description=Container registry garbage collection
+
+[Service]
+Type=oneshot
+ExecStartPre=/usr/bin/systemctl stop registry.service
+ExecStart=/usr/bin/podman run --rm --volume {{ registry_data_dir }}:/var/lib/registry:z {{ registry_image }} garbage-collect --delete-untagged /etc/docker/registry/config.yml
+ExecStopPost=/usr/bin/systemctl start registry.service

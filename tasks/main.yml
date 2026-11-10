@@ -1,0 +1,13 @@
+---
+- name: Install Podman
+  ansible.builtin.import_tasks:
+    file: install.yml
+
+- name: Run the registry
+  ansible.builtin.import_tasks:
+    file: service.yml
+
+- name: Schedule garbage collection
+  when: registry_gc_enabled
+  ansible.builtin.import_tasks:
+    file: gc.yml

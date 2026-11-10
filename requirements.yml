@@ -1,0 +1,6 @@
+---
+# Collections this role needs on the control node:
+#   ansible-galaxy collection install -r requirements.yml
+collections:
+  - name: ansible.posix  # firewalld; 2.x supports ansible-core 2.16
+    version: ">=2.2.0,<3.0.0"

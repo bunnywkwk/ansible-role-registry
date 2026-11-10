@@ -1,0 +1,20 @@
+---
+# registry: private registry:2 on RHEL 9, run by Podman as a systemd service. Override any of these in group_vars.
+
+## Image and port
+
+registry_image: docker.io/library/registry:2.8.3   # pinned
+registry_port: 5000                                # plain HTTP, no login: lab network only
+
+## Storage
+
+registry_data_dir: /var/lib/registry   # image layers; put it on the large disk
+
+## Garbage collection
+
+registry_gc_enabled: true                   # weekly timer; the registry stops while it runs
+registry_gc_schedule: "Sun *-*-* 03:00:00"   # systemd OnCalendar
+
+## Firewall
+
+registry_manage_firewall: true   # open registry_port in firewalld

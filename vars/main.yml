@@ -1,0 +1,7 @@
+---
+# registry internal fixed values (not set by users; their choices are in defaults/main.yml).
+
+registry_packages:
+  - podman   # runs the container; its Quadlet generator turns registry.container into registry.service
+registry_service: registry
+registry_quadlet_path: /etc/containers/systemd/registry.container

@@ -1,0 +1,19 @@
+---
+# shortcut: setting registry_gc_enabled back to false leaves the timer; disable it by hand until needed
+- name: "GC | Install the garbage-collection service and timer"
+  ansible.builtin.template:
+    src: "registry-gc.{{ item }}.j2"
+    dest: "/etc/systemd/system/registry-gc.{{ item }}"
+    owner: root
+    group: root
+    mode: "0644"
+  loop:
+    - service
+    - timer
+
+- name: "GC | Enable the garbage-collection timer"
+  ansible.builtin.systemd_service:
+    name: registry-gc.timer
+    enabled: true
+    state: started
+    daemon_reload: true
