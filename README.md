@@ -79,6 +79,7 @@ The lab test project is `ci-host-test/` next to this repo.
 | [docs/code-walkthrough.md](docs/code-walkthrough.md) | What each file and task does, and why |
 | [docs/design-decisions.md](docs/design-decisions.md) | Why Quadlet, rootful, no TLS/login, no SELinux port label (`D1`–`D10`) |
 | [docs/test-results.md](docs/test-results.md) | Checks that prove the role works: commands, expected and actual results |
+| [docs/troubleshooting.md](docs/troubleshooting.md) | Errors met, with cause, fix and prevention (`T-Rn`) |
 
 ## Known limits
 

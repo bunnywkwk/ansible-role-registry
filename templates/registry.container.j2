@@ -9,7 +9,6 @@ After=network-online.target
 ContainerName=registry
 Image={{ registry_image }}
 PublishPort={{ registry_port }}:5000
-insecure=true
 # :z (shared label): the garbage-collect container mounts it too
 Volume={{ registry_data_dir }}:/var/lib/registry:z
 Environment=REGISTRY_STORAGE_DELETE_ENABLED=true
