@@ -69,7 +69,7 @@ ansible-playbook playbooks/site.yml        # rerun: changed=0
 curl http://<host>:5000/v2/                # {} with HTTP 200
 ```
 
-The lab test project is `ci-host-test/` next to this repo.
+The lab playbook that runs this role together with the others is `cicd_lab_master/` next to this repo.
 
 ## Docs
 

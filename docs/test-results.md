@@ -1,7 +1,9 @@
 # Test results — `registry`
 
 Checks that prove the role works, with the exact command and the expected result. **Result** says what actually happened; `not run` means no evidence yet.
-Test project: `/home/bunny/cicd-automation/ci-host-test` (inventory: `rhel9-ci` = 192.168.122.135, user `frqadmin`).
+Lab playbook: `/home/bunny/cicd-automation/cicd_lab_master` (inventory: `rhel9-ci` = 192.168.122.135, user `frqadmin`).
+
+**Changed 2026-11-11:** the test projects `ci-host-test/` and `k3s-test/` were replaced by one lab playbook, `cicd_lab_master/` (user request). Results dated before that were run from the old projects; their logs moved to `cicd_lab_master/runs/`.
 
 ## Static checks (workstation, no VM)
 
@@ -12,11 +14,11 @@ Test project: `/home/bunny/cicd-automation/ci-host-test` (inventory: `rhel9-ci` 
 
 ## Runtime checks (RHEL 9 VM)
 
-Run from `ci-host-test/` unless the command says `(VM)`: those run on the VM over SSH.
+Run from `cicd_lab_master/` unless the command says `(VM)`: those run on the VM over SSH.
 
 | # | Check | Command | Expected | Result |
 |---|-------|---------|----------|--------|
-| V-1 | First run | `ansible-playbook playbooks/site.yml` | `failed=0`, `changed` > 0 | not run |
+| V-1 | First run | `ansible-playbook playbooks/main_playbook.yml -J --tags registry` | `failed=0`, `changed` > 0 | not run |
 | V-2 | Idempotent | same, rerun | `changed=0` | not run |
 | V-3 | Service up | (VM) `systemctl is-active registry` | `active` | not run |
 | V-4 | Port claimed | (VM) `sudo ss -tlnp \| grep ':5000'` | one listener on `*:5000` | not run |
@@ -60,4 +62,4 @@ systemctl is-active registry                   # active again
 
 ## Evidence
 
-Save each run's output under `ci-host-test/runs/` (as in `mongodb8-cis-test`) and fill in the Result column with the date and the key numbers.
+Save each run's output under `cicd_lab_master/runs/` and fill in the Result column with the date and the key numbers.
