@@ -124,5 +124,5 @@ Imports the three area files in order. `gc.yml` only when `registry_gc_enabled` 
 
 | File | Does | Why |
 |------|------|-----|
-| `requirements.yml` | `ansible.posix >=2.2.0,<3.0.0` | The firewalld module; 2.x supports ansible-core 2.16 |
+| `requirements.yml` | `ansible.posix`, no version | The firewalld module; collections are not version-pinned (user rule) |
 | `VERSION` | `0.1.0` | The pipeline tags `v<VERSION>` after a merged PR (later, when onboarded) |

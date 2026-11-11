@@ -51,7 +51,6 @@ roles:
     version: main
 collections:
   - name: ansible.posix
-    version: ">=2.2.0,<3.0.0"
 ```
 
 ```yaml
