@@ -77,6 +77,6 @@ Why the role is built this way. Format: **Decision** → **Why** → **Changed**
 
 ## D10: Not onboarded to `ansible-pipeline` yet
 
-**Decision:** no CI build yet, no `ci-container-vars.yml`.
+**Decision:** no CI build yet. (**Changed 2026-11-11:** `ci-container-vars.yml` no longer exists in the pipeline; the firewall is switched off there centrally.)
 
 **Why:** user decision, 2026-11-10: onboard when the role is polished, so build resources are not spent on every early push. The role already follows the pipeline's rules (`meta/main.yml` name, `VERSION`, no Jenkinsfile, no `molecule/`).
