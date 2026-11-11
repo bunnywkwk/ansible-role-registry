@@ -5,7 +5,7 @@ What each file does and why, briefly. Deeper reasons: `Dn` in [design-decisions.
 
 | # | File | Status |
 |---|------|--------|
-| 1 | `meta/main.yml`, `meta/argument_specs.yml` | done |
+| 1 | `meta/main.yml` | done |
 | 2 | `.yamllint`, `.ansible-lint`, `.gitignore` | done, copied from `mongodb-cis` |
 | 3 | `defaults/main.yml`, `vars/main.yml` | done |
 | 4 | `tasks/main.yml`, `install.yml`, `service.yml`, `gc.yml` | done, lint clean, not run on a VM yet |
@@ -39,10 +39,6 @@ The registry is a container, but systemd supervises it: start at boot, restart o
 | `min_ansible_version: "2.16"` | Oldest ansible-core allowed | Same as the pipeline's `/opt/ci` (2.16) |
 | `platforms: EL 9` | Supported OS | RHEL 9 only (D5) |
 | `dependencies: []` | No other roles run first | The jenkins role must not depend on this one; values pass through variables |
-
-### `meta/argument_specs.yml`
-
-Ansible checks every variable's type **before the first task**: `registry_port: "abc"` stops the play with a clear message instead of a broken unit file. It lists the same variables as `defaults/main.yml`.
 
 ## 2. `.yamllint`, `.ansible-lint`, `.gitignore`
 

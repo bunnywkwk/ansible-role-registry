@@ -38,7 +38,7 @@ A second run reports `changed=0`. The registry restarts only when its Quadlet fi
 | `registry_gc_schedule` | `Sun *-*-* 03:00:00` | systemd `OnCalendar` for GC |
 | `registry_manage_firewall` | `true` | Open `registry_port` in firewalld |
 
-Every variable, with a one-line explanation, is in [`defaults/main.yml`](defaults/main.yml). Types are checked before the first task ([`meta/argument_specs.yml`](meta/argument_specs.yml)).
+Every variable, with a one-line explanation, is in [`defaults/main.yml`](defaults/main.yml).
 
 ## Quick start
 
