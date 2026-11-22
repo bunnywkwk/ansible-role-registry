@@ -25,7 +25,7 @@ A second run reports `changed=0`. The registry restarts only when its Quadlet fi
 - RHEL 9 with its repos (`podman`) and access to `docker.io` for the image.
 - ansible-core 2.16 or later on the control node.
 - Collections: `ansible-galaxy collection install -r requirements.yml` (`ansible.posix`, for firewalld).
-- firewalld running, unless `registry_manage_firewall: false`.
+- firewalld: the role installs and starts it, unless `registry_manage_firewall: false`.
 
 ## Variables
 

@@ -16,6 +16,20 @@
     mode: "0644"
   notify: Restart registry
 
+# Cloud images (AWS RHEL AMIs) ship firewalld off; started before the registry so it never runs unfiltered.
+- name: "SERVICE | Install firewalld"
+  when: registry_manage_firewall
+  ansible.builtin.dnf:
+    name: firewalld
+    state: present
+
+- name: "SERVICE | Start and enable firewalld"
+  when: registry_manage_firewall
+  ansible.builtin.systemd_service:
+    name: firewalld
+    state: started
+    enabled: true
+
 # Quadlet units are generated, so systemd cannot enable them: [Install] in the unit starts it at boot.
 # daemon_reload runs the generator, so the first run finds registry.service.
 - name: "SERVICE | Start the registry"
