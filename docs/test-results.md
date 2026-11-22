@@ -63,3 +63,10 @@ systemctl is-active registry                   # active again
 ## Evidence
 
 Save each run's output under `cicd_lab_master/runs/` and fill in the Result column with the date and the key numbers.
+
+## Central CI (`ansible-pipeline`, job `role-ci/ansible-role-registry`)
+
+| # | Build | Pipeline | Result |
+|---|-------|----------|--------|
+| C-1 | `staging` #1, commit `470ea12` (branch push: gates only) | branch `branch-gates-only` (`d1dca89`) | ✅ 2026-11-11: no leaks, `VERSION 0.1.0`, YAML lint, ansible-lint production `0 failure(s)` (18 files, incl. `converge.yml` syntax check), Checkov 3 passed / 0 failed. The role does not run on a branch build |
+| C-2 | PR to `main` (gates + VM test on RHEL 9) | | not run |
